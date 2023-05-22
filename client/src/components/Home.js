@@ -2,18 +2,18 @@ import React, { useState, useEffect, useContext } from 'react'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { adddata, updateddata, deldata } from './context/ContextProvider';
 
 
 const Home = () => {
 
     const [getuserdata, setUserdata] = useState([]);
-    console.log(getuserdata);
+    // console.log(getuserdata);
 
-    const { udata } = useContext(adddata);
+    const { udata, setUdata } = useContext(adddata);
 
-    const { updata } = useContext(updateddata);
+    const { updata, setUPdata } = useContext(updateddata);
 
     const { dltdata, setDLTdata } = useContext(deldata);
 
@@ -29,13 +29,13 @@ const Home = () => {
         });
 
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
 
         if (res.status === 422 || !data) {
 
         } else {
             setUserdata(data)
-            console.log("get data");
+            // console.log("get data");
 
         }
     }
@@ -55,7 +55,7 @@ const Home = () => {
         });
 
         const deletedata = await res2.json();
-        console.log(deleteuser);
+        // console.log(deleteuser);
 
         if (res2.status === 422 || !deletedata) {
             console.log("error");
@@ -72,30 +72,30 @@ const Home = () => {
             {
                 udata ?
                     <>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div className="alert alert-success alert-dismissible fade show" role="alert" id="addalert">
                             <strong>{udata.name}</strong>  added succesfully!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button  onClick={(e) => setUdata(null)} type="button" className="btn-close" aria-label="Close"></button>
                         </div>
-                    </> : ""
+                    </> : undefined
             }
             {
                 updata ?
                     <>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div className="alert alert-success alert-dismissible fade show" role="alert" id="upalert">
                             <strong>{updata.name}</strong>  updated succesfully!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button onClick={(e) => setUPdata(null)} type="button" className="btn-close" aria-label="Close"></button>
                         </div>
-                    </> : ""
+                    </> : undefined
             }
 
             {
                 dltdata ?
                     <>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div className="alert alert-danger alert-dismissible fade show" role="alert" id="delalert">
                             <strong>{dltdata.name}</strong>  deleted succesfully!
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button onClick={(e) => setDLTdata(null)} type="button" className="btn-close" aria-label="Close"></button>
                         </div>
-                    </> : ""
+                    </> : undefined
             }
 
 
@@ -130,8 +130,12 @@ const Home = () => {
                                                 <td>{element.work}</td>
                                                 <td>{element.mobile}</td>
                                                 <td className='d-flex justify-content-between'>
-                                                    <NavLink to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></NavLink>
-                                                    <NavLink to={`edit/${element._id}`}><button className='btn btn-warning'><CreateIcon /></button></NavLink>
+                                                    <NavLink to={`view/${element._id}`} as="button" className="btn btn-success">
+                                                        <RemoveRedEyeIcon />
+                                                    </NavLink>
+                                                    <NavLink to={`edit/${element._id}`} as="button" className="btn btn-warning">
+                                                        <CreateIcon />
+                                                    </NavLink>
                                                     <button className='btn btn-danger' onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button>
                                                 </td>
                                             </tr>

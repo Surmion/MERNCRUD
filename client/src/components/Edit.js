@@ -8,7 +8,7 @@ const Edit = () => {
     // const [getuserdata, setUserdata] = useState([]);
     // console.log(getuserdata);
 
-    const { setUPdata } = useContext(updateddata)
+    const { setUPdata } = useContext(updateddata);
 
     const history = useNavigate("");
 
@@ -23,7 +23,7 @@ const Edit = () => {
     })
 
     const setdata = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         const { name, value } = e.target;
         setINP((preval) => {
             return {
@@ -34,9 +34,9 @@ const Edit = () => {
     }
 
 
-    const { id } = useParams("");
+    const { id } = useParams();
 
-    console.log(id);
+    // console.log(id);
 
 
 
@@ -64,7 +64,7 @@ const Edit = () => {
 
     useEffect(() => {
         getdata();
-    },[]);
+    }, []);
 
 
     const updateuser = async (e) => {
@@ -97,7 +97,7 @@ const Edit = () => {
 
     return (
         <div className="container">
-            <NavLink to="/">home2</NavLink>
+            <NavLink to="/">Home</NavLink>
             <form className="mt-4">
                 <div className="row">
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
