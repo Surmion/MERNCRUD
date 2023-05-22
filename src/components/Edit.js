@@ -102,7 +102,7 @@ const Edit = () => {
                 <div className="row">
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" value={data.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        <input type="text" value={inpval.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
                         <label for="exampleInputPassword1" class="form-label">email</label>
