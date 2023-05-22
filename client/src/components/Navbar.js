@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import { adddata, updateddata, deldata } from './context/ContextProvider';
+
 const Navbar = () => {
+
+    const { udata, setUdata } = useContext(adddata);
+
+    const { updata, setUPdata } = useContext(updateddata);
+
+    const { dltdata, setDLTdata } = useContext(deldata);
+
     return (<>
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -23,6 +32,35 @@ const Navbar = () => {
                 </div>
             </nav>
         </header>
+        {
+            udata ?
+                <>
+                    <div className="alert alert-success alert-dismissible fade show" role="alert" id="addalert">
+                        <strong>{udata.name}</strong>  added succesfully!
+                        <button  onClick={(e) => setUdata(null)} type="button" className="btn-close" aria-label="Close"></button>
+                    </div>
+                </> : undefined
+        }
+        {
+            updata ?
+                <>
+                    <div className="alert alert-success alert-dismissible fade show" role="alert" id="upalert">
+                        <strong>{updata.name}</strong>  updated succesfully!
+                        <button onClick={(e) => setUPdata(null)} type="button" className="btn-close" aria-label="Close"></button>
+                    </div>
+                </> : undefined
+        }
+
+        {
+            dltdata ?
+                <>
+                    <div className="alert alert-danger alert-dismissible fade show" role="alert" id="delalert">
+                        <strong>{dltdata.name}</strong>  deleted succesfully!
+                        <button onClick={(e) => setDLTdata(null)} type="button" className="btn-close" aria-label="Close"></button>
+                    </div>
+                </> : undefined
+        }
+
         <Outlet />
         </>
     )

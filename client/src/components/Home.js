@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { NavLink, Link } from 'react-router-dom'
-import { adddata, updateddata, deldata } from './context/ContextProvider';
+import { NavLink } from 'react-router-dom'
+import { deldata } from './context/ContextProvider';
 
 
 const Home = () => {
@@ -11,11 +11,7 @@ const Home = () => {
     const [getuserdata, setUserdata] = useState([]);
     // console.log(getuserdata);
 
-    const { udata, setUdata } = useContext(adddata);
-
-    const { updata, setUPdata } = useContext(updateddata);
-
-    const { dltdata, setDLTdata } = useContext(deldata);
+    const { setDLTdata } = useContext(deldata);
 
     const getdata = async (e) => {
 
@@ -69,37 +65,6 @@ const Home = () => {
     return (
 
         <>
-            {
-                udata ?
-                    <>
-                        <div className="alert alert-success alert-dismissible fade show" role="alert" id="addalert">
-                            <strong>{udata.name}</strong>  added succesfully!
-                            <button  onClick={(e) => setUdata(null)} type="button" className="btn-close" aria-label="Close"></button>
-                        </div>
-                    </> : undefined
-            }
-            {
-                updata ?
-                    <>
-                        <div className="alert alert-success alert-dismissible fade show" role="alert" id="upalert">
-                            <strong>{updata.name}</strong>  updated succesfully!
-                            <button onClick={(e) => setUPdata(null)} type="button" className="btn-close" aria-label="Close"></button>
-                        </div>
-                    </> : undefined
-            }
-
-            {
-                dltdata ?
-                    <>
-                        <div className="alert alert-danger alert-dismissible fade show" role="alert" id="delalert">
-                            <strong>{dltdata.name}</strong>  deleted succesfully!
-                            <button onClick={(e) => setDLTdata(null)} type="button" className="btn-close" aria-label="Close"></button>
-                        </div>
-                    </> : undefined
-            }
-
-
-
             <div className='mt-5'>
                 <div className='container'>
                     <div className='add_btn mt-2 mb-2'>
