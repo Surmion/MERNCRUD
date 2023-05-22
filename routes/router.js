@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
     try {
 
         const preuser = await users.findOne({ email: email });
-        console.log(preuser);
+        // console.log(preuser);
 
         if (preuser) {
             res.status(422).json("This user is already present")
@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
 
             await adduser.save();
             res.status(201).json(adduser);
-            console.log(adduser);
+            // console.log(adduser);
         }
 
     } catch (error) {
@@ -44,7 +44,7 @@ router.get("/getdata", async (req, res) => {
     try {
         const userdata = await users.find();
         res.status(201).json(userdata)
-        console.log(userdata);
+        // console.log(userdata);
     } catch (error) {
         res.status(422).json(error)
     }
@@ -54,11 +54,11 @@ router.get("/getdata", async (req, res) => {
 
 router.get("/getuser/:id", async (req, res) => {
     try {
-        console.log(req.params);
+        // console.log(req.params);
         const { id } = req.params;
 
         const userindividual = await users.findById({ _id: id });
-        console.log(userindividual);
+        // console.log(userindividual);
         res.status(201).json(userindividual)
     } catch (error) {
         res.status(422).json(error)
@@ -75,7 +75,7 @@ router.patch("/updateuser/:id", async (req, res) => {
             new: true
         });
 
-        console.log(updateuser);
+        // console.log(updateuser);
         res.status(201).json(updateuser);
 
     } catch (error) {
@@ -89,7 +89,7 @@ router.delete("/deleteuser/:id", async (req, res) => {
         const { id } = req.params;
 
         const deleteuser = await users.findByIdAndDelete({ _id: id })
-        console.log(deleteuser);
+        // console.log(deleteuser);
         res.status(201).json(deleteuser);
 
     } catch (error) {

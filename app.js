@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -14,6 +15,8 @@ app.use(express.json());
 
 app.use(router);
 
+app.use(express.static(path.join(__dirname, "build")));
+
 app.listen(port, () => {
-    console.log(`server is start port number ${port}`);
+    console.log(`server is started on http://localhost:${port}/`);
 });
