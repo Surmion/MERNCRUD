@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate } from 'react-router-dom';
 import { adddata } from './context/ContextProvider';
 
 const Register = () => {
 
     const { setUdata } = useContext(adddata);
 
-    const history = useHistory();
+    const history = useNavigate();
 
     const [inpval, setINP] = useState({
         name: "",
@@ -45,7 +45,6 @@ const Register = () => {
 
             })
         });
-
         const data = await res.json();
         console.log(data);
 
@@ -54,7 +53,7 @@ const Register = () => {
             console.log("error");
         } else {
             alert("data added");
-            history.push('/');
+            history('/');
             setUdata(data)
             console.log("data added");
 

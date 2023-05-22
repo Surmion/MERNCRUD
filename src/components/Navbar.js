@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 const Navbar = () => {
-    return (
+    return (<>
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
@@ -23,6 +23,8 @@ const Navbar = () => {
                 </div>
             </nav>
         </header>
+        <Outlet />
+        </>
     )
 }
 

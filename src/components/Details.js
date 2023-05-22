@@ -7,7 +7,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import WorkIcon from '@mui/icons-material/Work';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
-import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 
 
 
@@ -22,7 +22,7 @@ const Details = () => {
     const { id } = useParams("");
     console.log(id);
 
-    const history = useHistory();
+    const history = useNavigate();
 
 
     const getdata = async () => {
@@ -68,7 +68,7 @@ const Details = () => {
         if (res2.status === 422 || !deletedata) {
         } else {
             console.log("user deleted");
-            history.push("/");
+            history("/");
         }
 
     }

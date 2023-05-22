@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink, useParams, useHistory } from 'react-router-dom'
+import { NavLink, useParams, useNavigate} from 'react-router-dom'
 import { updateddata } from './context/ContextProvider'
 
 
@@ -10,7 +10,7 @@ const Edit = () => {
 
     const { setUPdata } = useContext(updateddata)
 
-    const history = useHistory("");
+    const history = useNavigate("");
 
     const [inpval, setINP] = useState({
         name: "",
@@ -35,6 +35,7 @@ const Edit = () => {
 
 
     const { id } = useParams("");
+
     console.log(id);
 
 
@@ -63,14 +64,15 @@ const Edit = () => {
 
     useEffect(() => {
         getdata();
-    },);
+    },[]);
 
 
     const updateuser = async (e) => {
         e.preventDefault();
 
         const { name, email, work, add, mobile, desc, age } = inpval;
-
+        
+        
         const res2 = await fetch(`/updateuser/${id}`, {
             method: "PATCH",
             headers: {
@@ -87,7 +89,7 @@ const Edit = () => {
         if (res2.status === 422 || !data2) {
             alert("fill the data");
         } else {
-            history.push("/")
+            history("/");
             setUPdata(data2);
         }
 
@@ -100,7 +102,7 @@ const Edit = () => {
                 <div className="row">
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" value={inpval.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        <input type="text" value={data.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
                         <label for="exampleInputPassword1" class="form-label">email</label>
