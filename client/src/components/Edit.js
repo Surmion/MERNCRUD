@@ -87,9 +87,24 @@ const Edit = () => {
         console.log(data2);
 
         if (res2.status === 422 || !data2) {
-            alert("fill the data");
+            Swal.fire({
+                title: "Error",
+                text: "Failed to Update!",
+                icon: "error",
+                timer: 1500
+            });
+            // alert("error");
+            console.log("error");
         } else {
-            history("/");
+            // alert("data added");
+            Swal.fire({
+                title: "Success",
+                text: "Successfully Updated!",
+                icon: "success",
+                timer: 1500
+            }).then(() => {
+                history('/');
+            });
             setUPdata(data2);
         }
 
