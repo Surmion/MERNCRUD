@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { adddata } from './context/ContextProvider';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
@@ -49,14 +50,26 @@ const Register = () => {
         console.log(data);
 
         if (res.status === 422 || !data) {
-            alert("error");
+            Swal.fire({
+                title: "Error",
+                text: "Failed to Register!",
+                icon: "error",
+                timer: 1000;
+            });
+            // alert("error");
             console.log("error");
         } else {
-            alert("data added");
-            history('/');
+            // alert("data added");
+            Swal.fire({
+                title: "Success",
+                text: "Successfully Registered!",
+                icon: "success",
+                timer: 1000;
+            }).then(() => {
+                history('/');
+            });
             setUdata(data)
             console.log("data added");
-
         }
     }
 
