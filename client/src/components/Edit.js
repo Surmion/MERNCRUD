@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useParams, useNavigate} from 'react-router-dom'
 import { updateddata } from './context/ContextProvider'
+import Swal from 'sweetalert2'
 
 
 const Edit = () => {
