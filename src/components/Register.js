@@ -54,7 +54,7 @@ const Register = () => {
                 title: "Error",
                 text: "Failed to Register!",
                 icon: "error",
-                timer: 1000;
+                timer: 1500
             });
             // alert("error");
             console.log("error");
@@ -64,7 +64,7 @@ const Register = () => {
                 title: "Success",
                 text: "Successfully Registered!",
                 icon: "success",
-                timer: 1000;
+                timer: 1500
             }).then(() => {
                 history('/');
             });
